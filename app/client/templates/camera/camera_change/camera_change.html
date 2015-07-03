@@ -1,0 +1,14 @@
+<template name="CameraChange">
+    <!-- Dropdown Trigger -->
+    {{message.m}}
+    <a class='dropdown-button btn blue' href='#' data-activates='dropdown1'>Switch Location</a>
+
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content blue-text'>
+        {{#each cameralist}}
+            <li><a class="camera-location blue-text" href="#!">{{this}}</a></li>
+        {{/each}}
+
+    </ul>
+    <button id="showSession">Show server val</button>
+</template>
