@@ -1,5 +1,3 @@
-
-
 HomeController = RouteController.extend({
   layoutTemplate: 'MasterLayout',
       //messages is name of collection on client side
@@ -11,5 +9,9 @@ HomeController = RouteController.extend({
 
   action: function() {
     this.render('Home');
+  },
+  dashboard:function(){
+    this.render('Dashboard');
   }
+
 });

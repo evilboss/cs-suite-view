@@ -12,7 +12,10 @@ Router.route('/', {
 });
 
 Router.route('/dashboard', {
-  name: 'dashboard'
+  name: 'dashboard',
+  controller: 'HomeController',
+  action: 'dashboard',
+  where: 'client'
 });
 
 Router.route('/items/new', {

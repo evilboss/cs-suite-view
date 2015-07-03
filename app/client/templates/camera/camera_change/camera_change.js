@@ -1,20 +1,20 @@
 /*****************************************************************************/
 /* CameraChange: Event Handlers */
 /*****************************************************************************/
-
-Meteor.subscribe("Commands");
 Template.CameraChange.events({
     'click li .camera-location': function (e, t) {
         e.preventDefault();
-        Session.set('cam', this.valueOf);
+        Session.set('cam', this.valueOf());
         console.log(this.valueOf());
-    },
-    'click #showSession': function (e) {
-        e.preventDefault();
-        Meteor.call('logCommand',function (result, error) {
-            console.log(result);
+        var result = Meteor.apply('changeLocation',[this.valueOf()], true,function(e,r){
+            if(r){
+                Session.set('callback',r);
+            }
+
         });
+
     }
+
 });
 
 /*****************************************************************************/
@@ -22,13 +22,10 @@ Template.CameraChange.events({
 /*****************************************************************************/
 Template.CameraChange.helpers({
     'cameralist': function () {
-        cameras = ['cctv', 'ctv-afs', 'ctv-house', 'ctv-if', 'ctv-tech']
+        cameras = ['cctv', 'ctv-house', 'ctv-tech']
         return cameras;
-    },
-    'message': function () {
-        console.log(Commands.findOne({}));
-        return Commands.findOne({});
     }
+
 
 });
 

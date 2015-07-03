@@ -1,21 +1,42 @@
-<template name="dashboard">
+<template name="Dashboard">
   <div class="template-dashboard">
-    <a class="btn-floating btn-large waves-effect waves-light red lighten-2 right" href="{{pathFor 'items.new'}}"><i class="mdi-content-add"></i></a>
 
-    <h1>Dashboard</h1>
+      {{#each showCameras}}
+          <div>
 
-    <ul class="collection">
-      {{#each items}}
-        <li class="collection-item avatar">
-          <i class="mdi-action-done circle red lighten-2"></i>
-          <span class="title">{{ name }}</span>
-          <p class="truncate">
-            {{ description }}
-          </p>
-          <span class="secondary-content"><i class="mdi-action-grade"></i> {{ rating }}</span>
-        </li>
+
+          </div>
       {{/each}}
-    </ul>
-  <button class="btn"></button>
+      {{getLatestPhoto}}
+    <h1>Dashboard</h1>
+    {{> CameraChange}}
+      <div class="row">
+
+        {{#each listText}}
+            <div class="card col s6">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator"
+                         src="http://toolbox.cloudstaff.com/~ctv-tech/crk04-ctv-003/20150624/{{this}}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Camera Name<i
+                            class="material-icons right">more_vert</i></span>
+
+                    <p><a href="#!">This is a link to live feed</a></p>
+                </div>
+                <div class="card-reveal" style="display: none; transform: translateY(0px);">
+                    <span class="card-title grey-text text-darken-4">Camera Details<i class="material-icons right">close</i></span>
+
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+
+
+
+        {{/each}}
+      </div>
+
+
+
   </div>
 </template>

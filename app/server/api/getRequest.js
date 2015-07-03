@@ -1,7 +1,9 @@
 /**
  * Created by gilbertor on 6/30/15.
  */
+
 if (Meteor.isServer) {
+    var future = Npm.require("fibers/future");
     Meteor.methods({
         folder: function () {
             this.unblock();
@@ -9,9 +11,15 @@ if (Meteor.isServer) {
             return result;
 
         },
-        logCommand:function(){
-            Commands.insert({data:'aw'});
-            return Commands.find().fetch();
+        changeLocation: function (locationName) {
+            if(locationName==='cctv') locationName ='gilbertor';
+            try{
+                result = HTTP.call('GET', 'http://toolbox.cloudstaff.com/~'+locationName+'/list.txt');
+                return result.content;
+            }catch(e){
+                console.log(e);
+                return e.message;
+            }
         }
     });
 }
